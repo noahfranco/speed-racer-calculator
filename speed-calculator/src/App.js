@@ -1,26 +1,24 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from "react";
+import "./App.css";
+import KeyPad from "./component/keyPad.js";
+import ResultComponent from "./component/resultComponent.js";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+  constructor() {
+    super();
+    this.state = {
+      result: "",
+    };
+  }
+
+  render() {
+    return (
+      <div>
+        <ResultComponent result={this.state.result} />
+        <KeyPad onClick={this.onClick} />
+      </div>
+    );
+  }
 }
 
 export default App;
