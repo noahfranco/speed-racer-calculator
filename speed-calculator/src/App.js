@@ -11,20 +11,6 @@ class App extends Component {
     };
   }
 
-  onClick = (button) => {
-    if (button === "=") {
-      this.calcuate();
-    } else if (button === "C") {
-      this.reset();
-    } else if (button === "CE") {
-      this.backspace();
-    } else {
-      this.setState({
-        result: this.state.result + button,
-      });
-    }
-  };
-
   calcuate() {
     try {
       this.setState({
@@ -43,6 +29,20 @@ class App extends Component {
     });
   }
 
+  onClick = (button) => {
+    if (button === "=") {
+      this.calcuate();
+    } else if (button === "C") {
+      this.reset();
+    } else if (button === "CE") {
+      this.backspace();
+    } else {
+      this.setState({
+        result: this.state.result + button,
+      });
+    }
+  };
+
   backspace() {
     this.setState({
       result: this.state.result.slice(0, -1),
@@ -51,7 +51,7 @@ class App extends Component {
 
   render() {
     return (
-      <div>
+      <div className="img">
         <ResultComponent result={this.state.result} />
         <KeyPad onClick={this.onClick} />
       </div>
