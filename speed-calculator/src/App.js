@@ -11,9 +11,47 @@ class App extends Component {
     };
   }
 
+  calcuate() {
+    try {
+      this.setState({
+        result: (eval(this.state.result) || " ") + "",
+      });
+    } catch (error) {
+      this.setState({
+        result: error.message,
+      });
+    }
+  }
+
+  reset() {
+    this.setState({
+      result: "",
+    });
+  }
+
+  onClick = (button) => {
+    if (button === "=") {
+      this.calcuate();
+    } else if (button === "C") {
+      this.reset();
+    } else if (button === "CE") {
+      this.backspace();
+    } else {
+      this.setState({
+        result: this.state.result + button,
+      });
+    }
+  };
+
+  backspace() {
+    this.setState({
+      result: this.state.result.slice(0, -1),
+    });
+  }
+
   render() {
     return (
-      <div>
+      <div className="img">
         <ResultComponent result={this.state.result} />
         <KeyPad onClick={this.onClick} />
       </div>
